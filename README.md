@@ -1,2 +1,1 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+Programa que contém as respostas das atividades postadas no site beecrowd.com.br
