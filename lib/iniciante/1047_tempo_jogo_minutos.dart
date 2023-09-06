@@ -3,39 +3,25 @@ import 'dart:io';
 void main() {
   final horasMinutos = stdin.readLineSync()!;
 
-  int horaInicial = int.parse(horasMinutos.split(' ')[0]);
-  int minutoInicial = int.parse(horasMinutos.split(' ')[1]);
-  int horaFinal = int.parse(horasMinutos.split(' ')[2]);
-  int minutoFinal = int.parse(horasMinutos.split(' ')[3]);
+  int h1 = int.parse(horasMinutos.split(' ')[0]);
+  int m1 = int.parse(horasMinutos.split(' ')[1]);
+  int h2 = int.parse(horasMinutos.split(' ')[2]);
+  int m2 = int.parse(horasMinutos.split(' ')[3]);
 
-  int horaTotal = 0;
-  int minutoTotal = 0;
+  int diferencaHoras = 0;
+  int diferencaMinutos = 0;
 
-  if (horaInicial == horaFinal && minutoInicial == minutoFinal) {
-    horaTotal = 24;
-    minutoTotal = 0;
-  } else if (horaInicial != horaFinal && minutoInicial == minutoFinal) {
-    horaTotal++; // 1 horas
-
-    if (horaInicial > horaFinal) {
-      horaTotal = (24 - horaInicial) + horaFinal;
-    } else if (horaInicial < horaFinal) {
-      horaTotal = horaFinal - horaInicial;
-    }
-
-  } else if (horaInicial != horaFinal && minutoInicial != minutoFinal) {
-    if (horaInicial > horaFinal) {
-      horaTotal = (24 - horaInicial) + horaFinal;
-    } else if (horaInicial < horaFinal) {
-      horaTotal = horaFinal - horaInicial;
-    }
-
-    if (minutoInicial > minutoFinal) {
-      minutoTotal = (60 - minutoInicial) + minutoFinal;
-    } else if (minutoInicial < minutoFinal) {
-      minutoTotal = minutoFinal - minutoInicial;
-    }
+  if ((h2 > h1) || ((h2 == h1) && (m2 > m1))) {
+    diferencaHoras = h2 - h1;
+  } else {
+    diferencaHoras = (h2 - h1) + 24;
+  }
+  if(m2 < m1){
+    diferencaHoras -= 1;
+    diferencaMinutos = (m2 - m1) + 60;
+  } else {
+    diferencaMinutos = m2 - m1;
   }
 
-  print('O JOGO DUROU $horaTotal HORA(S) E $minutoTotal MINUTO(S)');
+  print('O JOGO DUROU $diferencaHoras HORA(S) E $diferencaMinutos MINUTO(S)');
 }
